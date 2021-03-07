@@ -46,21 +46,45 @@
 // newPassport(jonas);
 // checkIn(flight, jonas);
 
-///////////fisrt class functions and higher order functions///////////
-const oneWord = function (str) {
-  return str.replace(/ /g, '').toLowerCase();
-};
+// ///////////fisrt class functions and higher order functions///////////
+// const oneWord = function (str) {
+//   return str.replace(/ /g, '').toLowerCase();
+// };
 
-const upperFirstWord = function (str) {
-  const [first, ...others] = str.split(' ');
-  return [first.toUpperCase(), ...others].join('');
-};
+// const upperFirstWord = function (str) {
+//   const [first, ...others] = str.split(' ');
+//   return [first.toUpperCase(), ...others].join('');
+// };
 
 //Higher Order function
 //takes in a function as an argument
-const transformer = function (str, fn) {
-  console.log(`Transformed string ${str} is now ${fn(str)}`);
-};
+// const transformer = function (str, fn) {
+//   console.log(`Transformed string ${str} is now ${fn(str)}`);
+// };
 
-transformer('Javascript is the best', upperFirstWord);
-transformer('Javascript is the best', oneWord);
+// transformer('Javascript is the best', upperFirstWord);
+// transformer('Javascript is the best', oneWord);
+
+// const high5 = function () {
+//   console.log('👋');
+// };
+// //callbacks
+// document.body.addEventListener('click', high5);
+// ['mareath', 'alpha', 'gjkb'].forEach(high5);
+
+//function that return a new function
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting}! ${name}`);
+//   };
+// };
+
+// const greeterHey = greet('Hey');
+// greeterHey('Nora');
+// greeterHey('Habib');
+// greet('Bonjour...')('Emily');
+
+// //new greet function using arrow finction
+// const greetArrow = greeting => name => console.log(`${greeting}..... ${name}`);
+
+// greetArrow('good night')('Haym');
