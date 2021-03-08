@@ -88,3 +88,65 @@
 // const greetArrow = greeting => name => console.log(`${greeting}..... ${name}`);
 
 // greetArrow('good night')('Haym');
+
+/////////////////CALL AND APPLY////////////////////
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  //book: function(){}
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.iataCode}${flightNum} for airline ${this.airline}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(230, 'Aleph Meite');
+lufthansa.book(134, 'John Meite');
+
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+const book = lufthansa.book;
+book.call(eurowings, 23, 'sarah williams');
+console.log(eurowings);
+
+book.call(lufthansa, 230, 'mary cooper');
+console.log(lufthansa);
+
+// const flightData = [555, 'George Cooper'];
+// book.call(swiss, ...flightData);
+
+//BIND Method
+const bookEW = book.bind(eurowings);
+bookEW(23, 'Steven Williams ');
+
+//When we use objects with event listener
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+//partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+//using bind gives us a new function
+const addVAT = addTax.bind(null, 0.23);
+
+const newAddVAT = rate => value => value * (1 + rate);
+
+const addVAT2 = newAddVAT(0.23);
+console.log(addVAT2(10000));
