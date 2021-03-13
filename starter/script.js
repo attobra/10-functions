@@ -185,48 +185,90 @@ data. Use both the 'array' and the 'string' option. Do not put the arrays in the
 object! So what should the this keyword look like in this situation?
 */
 
-const poll = {
-  question: 'What is your favourite programming language?',
-  options: ['0: Javascript', '1: Python', '2:Rust', '3: C++'],
-  //this generates [0, 0, 0, 0]
-  answers: new Array(4).fill(0),
+// const poll = {
+//   question: 'What is your favourite programming language?',
+//   options: ['0: Javascript', '1: Python', '2:Rust', '3: C++'],
+//   //this generates [0, 0, 0, 0]
+//   answers: new Array(4).fill(0),
 
-  registerNewAnswer() {
-    //1.get answer
-    const answer = Number(
-      prompt(
-        `${this.question}\n${this.options.join('\n')}\n(Write option number:)`
-      )
-    );
-    console.log(answer);
+//   registerNewAnswer() {
+//     //1.get answer
+//     const answer = Number(
+//       prompt(
+//         `${this.question}\n${this.options.join('\n')}\n(Write option number:)`
+//       )
+//     );
+//     console.log(answer);
 
-    //2. register the answer
-    typeof answer === 'number' &&
-      answer < this.answers.length &&
-      this.answers[answer]++;
+//     //2. register the answer
+//     typeof answer === 'number' &&
+//       answer < this.answers.length &&
+//       this.answers[answer]++;
 
-    this.displayResults();
-    this.displayResults('string');
-  },
+//     this.displayResults();
+//     this.displayResults('string');
+//   },
 
-  //3. display results method
-  displayResults(type = 'array') {
-    if (type === 'array') {
-      console.log(this.answers);
-    } else if (type === 'string') {
-      console.log(`Poll Results are ${this.answers.join(', ')}`);
-    }
-  },
-};
+//   //3. display results method
+//   displayResults(type = 'array') {
+//     if (type === 'array') {
+//       console.log(this.answers);
+//     } else if (type === 'string') {
+//       console.log(`Poll Results are ${this.answers.join(', ')}`);
+//     }
+//   },
+// };
 
-// poll.registerNewAnswer();
-//2.call the method on click
-document
-  .querySelector('.poll')
-  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+// // poll.registerNewAnswer();
+// //2.call the method on click
+// document
+//   .querySelector('.poll')
+//   .addEventListener('click', poll.registerNewAnswer.bind(poll));
 
-//   Data 1: [5, 2, 3]
-// § Data 2: [1, 5, 3, 9, 6, 1]
+// //   Data 1: [5, 2, 3]
+// // § Data 2: [1, 5, 3, 9, 6, 1]
 
-poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
-poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
+// poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
+
+// IMMEDIATELY INVOKED FUNCTIONS EXPRESSIONS (IIFE)
+// (function () {
+//   console.log('this function will never run again');
+// })();
+
+///////////////////CLOSURES////////////////////
+
+// const secureBooking = function () {
+//   let passengerCount = 0;
+
+//   return function () {
+//     passengerCount++;
+//     console.log(`${passengerCount} passengers`);
+//   };
+// };
+
+// const booker = secureBooking();
+// booker();
+// booker();
+// booker();
+
+// const boardPassengers = function (n, wait) {
+//   const perGroup = n / 3;
+
+//   setTimeout(function () {
+//     console.log(`We are boarding all ${n} passengers`);
+//     console.log(`There are 3 groups, each with ${perGroup} passengers`);
+//   }, wait * 1000);
+
+//   console.log(`Will be boarding in ${wait} seconds`);
+// };
+
+// boardPassengers(10, 5);
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
