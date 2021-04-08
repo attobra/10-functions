@@ -272,3 +272,19 @@ object! So what should the this keyword look like in this situation?
     header.style.color = 'blue';
   });
 })();
+
+//example of closures
+/*
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`will start boarding in ${wait} seconds`);
+};
+
+boardPassengers(180, 3);
+*/
